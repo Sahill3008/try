@@ -1,41 +1,31 @@
-#include <iostream>
-
+#include<iostream>
 using namespace std;
-
-int binarySearch(int array[], int size, int target) {
-  int low = 0;
-  int high = size - 1;
-
-  while (low <= high) {
-    int mid = (low + high) / 2;
-
-    if (array[mid] == target) {
-      return mid;
-    } else if (array[mid] < target) {
-      low = mid + 1;
-    } else {
-      high = mid - 1;
+int main()
+{
+    int i, arr[10], num, first, last, middle;
+    cout<<"Enter 10 Elements (in ascending order): ";
+    for(i=0; i<10; i++)
+        cin>>arr[i];
+    cout<<"\nEnter Element to be Search: ";
+    cin>>num;
+    first = 0;
+    last = 9;
+    middle = (first+last)/2;
+    while(first <= last)
+    {
+        if(arr[middle]<num)
+            first = middle+1;
+        else if(arr[middle]==num)
+        {
+            cout<<"\nThe number, "<<num<<" found at Position "<<middle+1;
+            break;
+        }
+        else
+            last = middle-1;
+        middle = (first+last)/2;
     }
-  }
-
-  return -1;
-}
-
-int main() {
-  int array[] = {1, 3, 5, 7, 9};
-  int size = sizeof(array) / sizeof(array[0]);
-  int target;
-
-  cout << "Enter the target element: ";
-  cin >> target;
-
-  int result = binarySearch(array, size, target);
-
-  if (result == -1) {
-    cout << "Target element not found." << endl;
-  } else {
-    cout << "Target element found at index " << result << endl;
-  }
-
-  return 0;
+    if(first>last)
+        cout<<"\nThe number, "<<num<<" is not found in given Array";
+    cout<<endl;
+    return 0;
 }
